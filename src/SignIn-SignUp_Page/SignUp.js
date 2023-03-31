@@ -10,7 +10,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
     const navigate = useNavigate(); 
+    const [id, setID] = useState('');
     const [email, setEmail] = useState('');
+    const [fName, setfName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -18,13 +20,15 @@ export default function SignUp() {
         const url = 'http://localhost/Backend_API/signup.php';
         
         let fData = new FormData();
+        fData.append('id', id);
         fData.append('email', email);
+        fData.append('fName', fName);
         fData.append('password', password);
         fData.append('confirm_password', confirmPassword);
 
         axios.post(url, fData)
           .then(response => {
-            response.data.trim() === "Success" ? navigate("/SignIn") : alert(response.data);
+            response.data.trim() === "Success" ? navigate("/") : alert(response.data);
           })
           .catch(error => {
             alert(error);
@@ -34,6 +38,25 @@ export default function SignUp() {
     return (
         <div className='container'>
         <div className='content'>
+        <div className='input_field'>
+                <TextField
+                value={id}
+                onChange={event => setID(event.target.value)}
+                id='id'
+                label='ID NO.'
+                variant='outlined'
+                InputProps={{
+                    startAdornment: (
+                    <EmailIcon
+                        sx={{
+                        color: 'gray',
+                        marginRight: '10px',
+                        }}
+                    />
+                    ),
+                }}
+                />
+            </div>
             <div className='input_field1'>
                 <TextField
                 value={email}
@@ -54,6 +77,25 @@ export default function SignUp() {
                 />
             </div>
             <div className='input_field2'>
+                <TextField
+                value={fName}
+                onChange={event => setfName(event.target.value)}
+                id='FullName'
+                label='FullName'
+                variant='outlined'
+                InputProps={{
+                    startAdornment: (
+                    <EmailIcon
+                        sx={{
+                        color: 'gray',
+                        marginRight: '10px',
+                        }}
+                    />
+                    ),
+                }}
+                />
+            </div>
+            <div className='input_field3'>
             <TextField
                 value={password}
                 onChange={event => setPassword(event.target.value)}
@@ -73,7 +115,7 @@ export default function SignUp() {
                 }}
                 />
             </div>
-            <div className='input_field3'>
+            <div className='input_field4'>
             <TextField
                 value={confirmPassword}
                 onChange={event => setConfirmPassword(event.target.value)}

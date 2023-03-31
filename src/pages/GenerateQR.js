@@ -17,7 +17,7 @@ export default function MyComponent() {
   const UID = uuidv4();
   
   const GenerateQRCode = () => {
-    QRCode.toDataURL(sample, {
+    QRCode.toDataURL(UID, {
       errorCorrectionLevel: 'H',
       type: 'image/png',
       margin: 2,
@@ -25,11 +25,11 @@ export default function MyComponent() {
         dark: '#000000FF',
         light: '#FFFFFFFF'
       }
-    }, function (err, sample) {
+    }, function (err, UID) {
       if (err) {
-        console.error(sample);
+        console.error(UID);
       } else {
-        setQr(sample);
+        setQr(UID);
       }
     });
     const url = 'http://localhost/Backend_API/createqr.php';
