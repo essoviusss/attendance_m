@@ -14,6 +14,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import DashBoard from './pages/DashBoard';
 import GenerateQR from './pages/GenerateQR';
+import ManageQR from './pages/ManageQR';
 
 const drawerWidth = 240;
 
@@ -61,6 +62,14 @@ export default function ClippedDrawer() {
               <ListItemText primary="Generate QR" />
             </ListItemButton>
           </ListItem>
+          <ListItem key="Manage QR" disablePadding>
+            <ListItemButton onClick={() => handleNavigation('Manage QR')}>
+              <ListItemIcon>
+                <QrCodeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Manage QR" />
+            </ListItemButton>
+          </ListItem>
           <ListItem key="Attendance" disablePadding>
             <ListItemButton onClick={() => handleNavigation('Attendance')}>
               <ListItemIcon>
@@ -88,6 +97,9 @@ export default function ClippedDrawer() {
         )}
         {currentPage === 'Generate QR' && (
           <GenerateQR/>
+        )}
+        {currentPage === 'Manage QR' && (
+          <ManageQR/>
         )}
         {currentPage === 'Attendance' && (
           <Typography paragraph>

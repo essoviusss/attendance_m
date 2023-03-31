@@ -36,6 +36,7 @@ export default function MyComponent() {
     let fData = new FormData();
     fData.append('id', UID);
     fData.append('room', sample);
+    fData.append('qr_img', qr.toString);
 
     axios.post(url, fData)
     .then(response => {

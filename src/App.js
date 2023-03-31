@@ -6,6 +6,7 @@ import SignUp from './SignIn-SignUp_Page/SignUp';
 import DashBoard from './pages/DashBoard';
 import GenerateQR from './pages/GenerateQR';
 import ClippedDrawer from './ClippedDrawer';
+import ManageQR from './pages/ManageQR';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/ClippedDrawer' element={<ClippedDrawer/>} />
         <Route path='/DashBoard' element={<DashBoard/>} />
         <Route path='/GenerateQR' element={<GenerateQR/>} />
+        <Route path='/ManageQR' element={<ManageQR/>} />
       </Routes>
     </Router>
   );
