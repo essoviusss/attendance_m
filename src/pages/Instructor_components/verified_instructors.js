@@ -5,11 +5,11 @@ import './Istyle.css'
 import axios from 'axios';
 
 
-export default function Instructor(){
+export default function VerifiedInstructor(){
     const [instructors, setInstructors] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost/Backend_API/instructors_read.php')
+        axios.get('http://localhost/Backend_API/verified_instructors.php')
           .then(response => {
             setInstructors(response.data);
             console.log(response.data)
@@ -50,21 +50,8 @@ export default function Instructor(){
           }
           return originalElement;
       }
-
-
-      function Accept(id){
-        console.log(id);
-        axios.put(`http://localhost/Backend_API/accept_instructor.php?id=${id}`)
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.log(error.response.data);
-        });
-      }
-
-      const Reject = () => {
-        alert("Madi");
+      function Delete(id){
+        
       }
 
     return (
@@ -96,7 +83,7 @@ export default function Instructor(){
                                                     <td>{instructor.Email}</td>
                                                     <td>{instructor.Department}</td>
                                                     <td>{instructor.isVerified == false ? "Not Verified" : "Verified"}</td>
-                                                    <span><Button onClick={() => Accept(instructor.ID)} variant="text">Accept</Button></span><span>/</span><span><Button onClick={Reject} variant="text">Reject</Button></span>
+                                                    <span><Button onClick={() => Delete(instructor.ID)} variant="text">Delete</Button></span>
                                                 </tr>
                                                 )
                                             })

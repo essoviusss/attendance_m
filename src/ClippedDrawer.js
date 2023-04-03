@@ -16,6 +16,7 @@ import DashBoard from './pages/DashBoard';
 import GenerateQR from './pages/GenerateQR';
 import ManageQR from './pages/ManageQR';
 import Instructor from './pages/Instructor_components/Instructor';
+import VerifiedInstructors from './pages/Instructor_components/verified_instructors';
 
 const drawerWidth = 240;
 
@@ -71,12 +72,20 @@ export default function ClippedDrawer() {
               <ListItemText primary="Manage QR" />
             </ListItemButton>
           </ListItem>
-          <ListItem key="Instructor" disablePadding>
-            <ListItemButton onClick={() => handleNavigation('Instructor')}>
+          <ListItem key="Verify Instructor" disablePadding>
+            <ListItemButton onClick={() => handleNavigation('Verify Instructor')}>
               <ListItemIcon>
                 <QrCodeIcon />
               </ListItemIcon>
-              <ListItemText primary="Instructors" />
+              <ListItemText primary="Verify Instructors" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="Verified Instructors" disablePadding>
+            <ListItemButton onClick={() => handleNavigation('Verified Instructors')}>
+              <ListItemIcon>
+                <QrCodeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Verified Instructors" />
             </ListItemButton>
           </ListItem>
           <ListItem key="Attendance" disablePadding>
@@ -110,8 +119,11 @@ export default function ClippedDrawer() {
         {currentPage === 'Manage QR' && (
           <ManageQR/>
         )}
-        {currentPage === 'Instructor' && (
+        {currentPage === 'Verify Instructor' && (
           <Instructor/>
+        )}
+        {currentPage === 'Verified Instructors' && (
+          <VerifiedInstructors/>
         )}
         {currentPage === 'Attendance' && (
           <Typography paragraph>
