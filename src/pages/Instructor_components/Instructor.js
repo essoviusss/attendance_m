@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import Pagination  from "https://cdn.skypack.dev/rc-pagination@3.1.15";
 import './Istyle.css'
 
+
 export default function Instructor(){
+
+    //function using axios
+
     const datatableUsers = [
         {
           "name": "Jon Snow",
-          "gender": "Male",
           "Email": "Jon@sample.com",
+          "Department": "CCSE",
           "Status": "Not Verified",
           "Action": "Accept/Reject",
           "id": 1
         },
-      ]
+      ] //change with actual fetch from the server
         
         const [perPage] = useState(10);
         const [size, setSize] = useState(perPage);
@@ -54,28 +58,15 @@ export default function Instructor(){
                             <div className="card">
                             <div className="card-body p-0">
                                 
-                                <div className="table-filter-info">
-                                    
-                                    <Pagination
-                                        className="pagination-data"
-                                        showTotal={(total, range) => `Showing ${range[0]}-${range[1]} of ${total}`}
-                                        onChange={PaginationChange}
-                                        total={datatableUsers.length}
-                                        current={current}
-                                        pageSize={size}
-                                        showSizeChanger={false}
-                                        itemRender={PrevNextArrow}
-                                        onShowSizeChange={PerPageChange}
-                                    />
-                                </div>
+                                
                                 <div className="table-responsive">
                                     <table className="table table-text-small mb-0">
                                         <thead className="thead-primary table-sorting">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Instructor</th>
-                                                <th>Gender</th>
                                                 <th>Email</th>
+                                                <th>Department</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -87,8 +78,8 @@ export default function Instructor(){
                                                         <tr key={data.id}>
                                                             <td>{data.id}</td>
                                                             <td>{data.name}</td>
-                                                            <td>{data.gender}</td>
                                                             <td>{data.Email}</td>
+                                                            <td>{data.Department}</td>
                                                             <td>{data.Status}</td>
                                                             <td>{data.Action}</td>
                                                         </tr>
