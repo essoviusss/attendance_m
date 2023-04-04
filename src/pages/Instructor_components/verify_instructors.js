@@ -8,6 +8,7 @@ import axios from 'axios';
 export default function Instructor(){
     const [instructors, setInstructors] = useState([]);
 
+
     useEffect(() => {
         axios.get('http://localhost/Backend_API/instructors_read.php')
           .then(response => {
@@ -17,7 +18,7 @@ export default function Instructor(){
           .catch(error => {
             console.log(error);
           });
-      }, []);
+      }, [instructors, ]);
 
       const [perPage] = useState(10);
       const [size, setSize] = useState(perPage);
@@ -41,7 +42,7 @@ export default function Instructor(){
           setSize(pageSize)
       }
   
-      const PrevNextArrow = (current, type, originalElement) => {
+      const PrevNextArrow = (type, originalElement) => {
           if (type === 'prev') {
               return <button><i className="fa fa-angle-double-left"></i></button>;
           }
@@ -51,20 +52,24 @@ export default function Instructor(){
           return originalElement;
       }
 
-
+      
       function Accept(id){
         console.log(id);
-        axios.put(`http://localhost/Backend_API/accept_instructor.php?id=${id}`)
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.log(error.response.data);
-        });
+          axios.put(`http://localhost/Backend_API/accept_instructor.php?id=${id}`)
+          .then(response => {
+              alert(response.data);
+          })
+          .catch(error => { 
+              console.log(error.response.data);
+          });
       }
-
       const Reject = () => {
-        alert("Madi");
+        const confirmed = window.confirm('Are you sure?');
+            if (confirmed) {
+                // do something
+            } else {
+                // do something else
+            }
       }
 
     return (
@@ -89,15 +94,15 @@ export default function Instructor(){
                                         <tbody>
                                         {
                                             getData(current, size).map((instructor, index) => {
-                                                return (
+                                                return ( 
                                                     <tr key={instructor.ID}>
                                                     <td>{index + 1}</td>
                                                     <td>{instructor.Name}</td>
                                                     <td>{instructor.Email}</td>
                                                     <td>{instructor.Department}</td>
-                                                    <td>{instructor.isVerified == false ? "Not Verified" : "Verified"}</td>
+                                                    <td>{instructor.isVerified == false ? "Not Verified" : "Verified"}</td> 
                                                     <span><Button onClick={() => Accept(instructor.ID)} variant="text">Accept</Button></span><span>/</span><span><Button onClick={Reject} variant="text">Reject</Button></span>
-                                                </tr>
+                                                    </tr>
                                                 )
                                             })
                                         }

@@ -15,8 +15,9 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import DashBoard from './pages/DashBoard';
 import GenerateQR from './pages/GenerateQR';
 import ManageQR from './pages/ManageQR';
-import Instructor from './pages/Instructor_components/Instructor';
 import VerifiedInstructors from './pages/Instructor_components/verified_instructors';
+import RejectedInstructors from './pages/Instructor_components/rejected_instructors';
+import Instructor from './pages/Instructor_components/verify_instructors';
 
 const drawerWidth = 240;
 
@@ -88,6 +89,14 @@ export default function ClippedDrawer() {
               <ListItemText primary="Verified Instructors" />
             </ListItemButton>
           </ListItem>
+          <ListItem key="Rejected Instructors" disablePadding>
+            <ListItemButton onClick={() => handleNavigation('Rejected Instructors')}>
+              <ListItemIcon>
+                <QrCodeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Rejected Instructors" />
+            </ListItemButton>
+          </ListItem>
           <ListItem key="Attendance" disablePadding>
             <ListItemButton onClick={() => handleNavigation('Attendance')}>
               <ListItemIcon>
@@ -124,6 +133,9 @@ export default function ClippedDrawer() {
         )}
         {currentPage === 'Verified Instructors' && (
           <VerifiedInstructors/>
+        )}
+        {currentPage === 'Rejected Instructors' && (
+          <RejectedInstructors/>
         )}
         {currentPage === 'Attendance' && (
           <Typography paragraph>
