@@ -19,43 +19,43 @@ export default function MyComponent() {
 
   console.log(qr.toString());
 
-  async function setData(){
-    await GenerateQRCode();
-    const url = 'http://localhost/Backend_API/createqr.php';
-    let fData = new FormData();
-    fData.append('id', UID);
-    fData.append('room', sample);
-    fData.append('qr_img', qr.toString());
-
-    axios.post(url, fData)
-    .then(response => {
-        alert(response.data);
-    })
-    .catch(error => {
-        alert(error);
+  async function GenerateQRCode() {
+    return new Promise((resolve, reject) => {
+      QRCode.toDataURL(UID, {
+        errorCorrectionLevel: 'H',
+        type: 'image/png',
+        margin: 2,
+        color: {
+          dark: '#000000FF',
+          light: '#FFFFFFFF'
+        }
+      }, (err, UID) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(UID);
+          setQr(UID);
+        }
+      });
     });
   }
- 
   
- async function GenerateQRCode(){
-  QRCode.toDataURL(UID, {
-    errorCorrectionLevel: 'H',
-    type: 'image/png',
-    margin: 2,
-    color: {
-      dark: '#000000FF',
-      light: '#FFFFFFFF'
-    }
-  },
-  function (err, UID) {
-    if (err) {
-      alert.error(err);
-    } else {
-      setQr(UID);
+  async function setData() {
+    try {
+      const qrCodeDataUrl = await GenerateQRCode();
+      const url = 'http://localhost/Backend_API/createqr.php';
+      const fData = new FormData();
+      fData.append('id', UID);
+      fData.append('room', sample);
+      fData.append('qr_img', qrCodeDataUrl);
+  
+      const response = await axios.post(url, fData);
+      alert(response.data);
+    } catch (error) {
+      alert(error);
     }
   }
-  );
- }
+  
 
   function handleDownload() {
     const link = document.createElement('a');
