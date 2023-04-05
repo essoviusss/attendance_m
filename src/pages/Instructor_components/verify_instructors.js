@@ -54,22 +54,34 @@ export default function Instructor(){
 
       
       function Accept(id){
-        console.log(id);
-          axios.put(`http://localhost/Backend_API/accept_instructor.php?id=${id}`)
-          .then(response => {
-              alert(response.data);
-          })
-          .catch(error => { 
-              console.log(error.response.data);
-          });
+        const confirmed = window.confirm('Are you sure you want to accept this Instructor?');
+        if(confirmed){
+            axios.put(`http://localhost/Backend_API/accept_instructor.php?id=${id}`)
+            .then(response => {
+                alert(response.data);
+            })
+            .catch(error => { 
+                console.log(error.response.data);
+            });
+            alert("Successful");
+        }else{
+            alert("Unsuccessful");
+        }
       }
-      const Reject = () => {
-        const confirmed = window.confirm('Are you sure?');
-            if (confirmed) {
-                // do something
-            } else {
-                // do something else
-            }
+      function Reject(id){
+        const confirmed = window.confirm('Are you sure you want to reject this Instructor?');
+        if (confirmed) {
+            axios.put(`http://localhost/Backend_API/reject_instructor.php?id=${id}`)
+            .then(response => {
+                alert(response.data);
+            })
+            .catch(error => { 
+                console.log(error.response.data);
+            });
+            alert("Successful");
+        } else {
+            alert("Unsuccessful");
+        }
       }
 
     return (
@@ -101,7 +113,8 @@ export default function Instructor(){
                                                     <td>{instructor.Email}</td>
                                                     <td>{instructor.Department}</td>
                                                     <td>{instructor.isVerified == false ? "Not Verified" : "Verified"}</td> 
-                                                    <span><Button onClick={() => Accept(instructor.ID)} variant="text">Accept</Button></span><span>/</span><span><Button onClick={Reject} variant="text">Reject</Button></span>
+                                                    <span><Button onClick={() => Accept(instructor.ID)} variant="contained" size="small">Accept</Button></span>
+                                                    <span><Button onClick={() => Reject(instructor.ID)} variant="text">Reject</Button></span>
                                                     </tr>
                                                 )
                                             })

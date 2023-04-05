@@ -24,6 +24,8 @@ export default function MyComponent() {
       QRCode.toDataURL(UID, {
         errorCorrectionLevel: 'H',
         type: 'image/png',
+        height: 200,
+        width: 200,
         margin: 2,
         color: {
           dark: '#000000FF',
