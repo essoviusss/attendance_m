@@ -12,7 +12,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import QrCodeIcon from '@mui/icons-material/QrCode';
-import DashBoard from './pages/DashBoard';
+import DashBoard from './pages/dashboard_components/DashBoard';
 import GenerateQR from './pages/GenerateQR';
 import ManageQR from './pages/ManageQR';
 import VerifiedInstructors from './pages/Instructor_components/verified_instructors';

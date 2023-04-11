@@ -62,7 +62,7 @@ export default function MyComponent() {
   function handleDownload() {
     const link = document.createElement('a');
     link.href = qr;
-    link.download = 'qrcode.png';
+    link.download = sample +'.png';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

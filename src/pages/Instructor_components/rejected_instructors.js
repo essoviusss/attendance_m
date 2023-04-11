@@ -17,7 +17,7 @@ export default function RejectedInstructor(){
           .catch(error => {
             console.log(error);
           });
-      }, []);
+      }, [instructors]);
 
       const [perPage] = useState(10);
       const [size, setSize] = useState(perPage);
@@ -50,8 +50,17 @@ export default function RejectedInstructor(){
           }
           return originalElement;
       }
-      function Delete(id){
-        
+      async function Delete(id, name, email, department, isVerified){
+        const url = 'http://localhost/Backend_API/delete_instructors.php';
+        const fData = new FormData();
+        fData.append('id', id);
+        fData.append('name', name);
+        fData.append('email', email);
+        fData.append('department', department);
+        fData.append('isVerified', isVerified);
+    
+        const response = await axios.post(url, fData);
+        alert(response.data);
       }
 
     return (
@@ -83,7 +92,7 @@ export default function RejectedInstructor(){
                                                     <td>{instructor.Email}</td>
                                                     <td>{instructor.Department}</td>
                                                     <td>{instructor.isVerified == false ? "Not Verified" : "Rejected"}</td>
-                                                    <span><Button onClick={() => Delete(instructor.ID)} variant="text">Delete</Button></span>
+                                                    <span><Button onClick={() => Delete(instructor.ID, instructor.Name, instructor.Email, instructor.Department, instructor.isVerified)} variant="text">Delete</Button></span>
                                                 </tr>
                                                 )
                                             })

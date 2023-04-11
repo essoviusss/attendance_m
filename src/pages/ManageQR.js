@@ -28,7 +28,7 @@ export default function ManageQR(){
         document.body.removeChild(link);
       }
 
-      const [perPage] = useState(5);
+      const [perPage] = useState(4);
       const [size, setSize] = useState(perPage);
       const [current, setCurrent] = useState(1);
       
