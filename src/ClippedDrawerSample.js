@@ -1,12 +1,4 @@
 import * as React from 'react';
-import { FaRegChartBar } from "react-icons/fa";
-import { IoPerson } from "react-icons/io5";
-import { IoPersonAddSharp } from "react-icons/io5";
-import { IoPersonRemoveSharp } from "react-icons/io5";
-import { BsCalendarCheckFill } from "react-icons/bs";
-import { RiFolderUserLine } from "react-icons/ri";
-import { BiQrScan } from "react-icons/bi";
-import { BiQr } from "react-icons/bi";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
@@ -18,21 +10,18 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import DashBoard from './pages/dashboard_components/DashBoard';
+import HomeIcon from '@mui/icons-material/Home';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import DashBoard from './pages/DashBoard';
 import GenerateQR from './pages/GenerateQR';
 import ManageQR from './pages/ManageQR';
 import VerifiedInstructors from './pages/Instructor_components/verified_instructors';
 import RejectedInstructors from './pages/Instructor_components/rejected_instructors';
 import Instructor from './pages/Instructor_components/verify_instructors';
-import "./styles.css"
 
-const iconStyles = {
-  fontSize: '40px',
-  color: 'white',
-};
 const drawerWidth = 240;
 
-export default function ClippedDrawer() {
+export default function ClippedDrawerSample() {
   const [currentPage, setCurrentPage] = React.useState('Dashboard');
 
   const handleNavigation = (page) => {
@@ -42,9 +31,9 @@ export default function ClippedDrawer() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: '#fff', color: '#000' }}>
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+          <Typography variant="h6" noWrap component="div">
             Attendance Monitoring Admin
           </Typography>
         </Toolbar>
@@ -54,46 +43,40 @@ export default function ClippedDrawer() {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-            backgroundColor: '#006738',
-            color: 'white',
-          },
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
         }}
       >
-        
-<Toolbar />
-<Box sx={{ overflow: 'auto' }}>
-<List>
-<ListItem key="Dashboard" disablePadding >
-<ListItemButton onClick={() => handleNavigation('Dashboard')}>
-<ListItemIcon>
-<FaRegChartBar style={iconStyles} />
-</ListItemIcon>
-<ListItemText primary="Dashboard" />
-</ListItemButton>
-</ListItem>
-<ListItem key="Generate QR" disablePadding >
-<ListItemButton onClick={() => handleNavigation('Generate QR')}>
-<ListItemIcon>
-<BiQrScan style={iconStyles}/>
-</ListItemIcon>
-<ListItemText primary="Generate QR" />
-</ListItemButton>
-</ListItem>
-<ListItem key="Manage QR" disablePadding >
-<ListItemButton onClick={() => handleNavigation('Manage QR')}>
-<ListItemIcon>
-<BiQr style={iconStyles} />
-</ListItemIcon>
-<ListItemText primary="Manage QR" />
-</ListItemButton>
-</ListItem>
+        <Toolbar />
+        <Box sx={{ overflow: 'auto' }}>
+        <List>
+          <ListItem key="Dashboard" disablePadding>
+            <ListItemButton onClick={() => handleNavigation('Dashboard')}>
+              <ListItemIcon>
+                <QrCodeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="Generate QR" disablePadding>
+            <ListItemButton onClick={() => handleNavigation('Generate QR')}>
+              <ListItemIcon>
+                <QrCodeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Generate QR" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="Manage QR" disablePadding>
+            <ListItemButton onClick={() => handleNavigation('Manage QR')}>
+              <ListItemIcon>
+                <QrCodeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Manage QR" />
+            </ListItemButton>
+          </ListItem>
           <ListItem key="Verify Instructor" disablePadding>
             <ListItemButton onClick={() => handleNavigation('Verify Instructor')}>
               <ListItemIcon>
-                <IoPerson style={iconStyles} />
+                <QrCodeIcon />
               </ListItemIcon>
               <ListItemText primary="Verify Instructors" />
             </ListItemButton>
@@ -101,7 +84,7 @@ export default function ClippedDrawer() {
           <ListItem key="Verified Instructors" disablePadding>
             <ListItemButton onClick={() => handleNavigation('Verified Instructors')}>
               <ListItemIcon>
-                <IoPersonAddSharp style={iconStyles}/>
+                <QrCodeIcon />
               </ListItemIcon>
               <ListItemText primary="Verified Instructors" />
             </ListItemButton>
@@ -109,7 +92,7 @@ export default function ClippedDrawer() {
           <ListItem key="Rejected Instructors" disablePadding>
             <ListItemButton onClick={() => handleNavigation('Rejected Instructors')}>
               <ListItemIcon>
-                <IoPersonRemoveSharp style={iconStyles}/>
+                <QrCodeIcon />
               </ListItemIcon>
               <ListItemText primary="Rejected Instructors" />
             </ListItemButton>
@@ -117,7 +100,7 @@ export default function ClippedDrawer() {
           <ListItem key="Attendance" disablePadding>
             <ListItemButton onClick={() => handleNavigation('Attendance')}>
               <ListItemIcon>
-                <BsCalendarCheckFill style={iconStyles} />
+                <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Attendance" />
             </ListItemButton>
@@ -125,7 +108,7 @@ export default function ClippedDrawer() {
           <ListItem key="Profile" disablePadding>
             <ListItemButton onClick={() => handleNavigation('Profile')}>
               <ListItemIcon>
-                <RiFolderUserLine style={iconStyles}/>
+                <QrCodeIcon />
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItemButton>

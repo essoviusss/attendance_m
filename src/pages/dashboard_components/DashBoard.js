@@ -138,23 +138,23 @@ export default function DashBoard() {
                                         <table className="table table-text-small mb-0" style={{ width: '100%' }}>
                                             <thead className="thead-primary table-sorting">
                                                 <tr>
-                                                    <th>Instructor ID</th>
-                                                    <th>
-                                                        <select value={selectedInstructor} onChange={handleInstructorChange} style={{border: "none", backgroundColor: "#1769aa", color: "white", fontWeight: "bold"}}>
+                                                    <th style={{ backgroundColor: '#006738' }}>Instructor ID</th>
+                                                    <th style={{ backgroundColor: '#006738' }}>
+                                                        <select value={selectedInstructor} onChange={handleInstructorChange} style={{border: "none", backgroundColor: "#006738", color: "white", fontWeight: "bold"}}>
                                                             <option value="">Instructor Name</option>
                                                             {instructorOptions}
                                                         </select>
                                                     </th>
-                                                    <th>
-                                                        <select value={selectedRoom} onChange={handleRoomChange} style={{border: "none", backgroundColor: "#1769aa", color: "white", fontWeight: "bold"}}>
+                                                    <th style={{ backgroundColor: '#006738' }}>
+                                                        <select value={selectedRoom} onChange={handleRoomChange} style={{border: "none", backgroundColor: "#006738", color: "white", fontWeight: "bold"}}>
                                                             <option value="">Room</option>
                                                             {roomOptions}
                                                         </select>
                                                     </th>
-                                                    <th>Time-In Date</th>
-                                                    <th>Time-In Time</th>
-                                                    <th>Time-Out Date</th>
-                                                    <th>Time-Out Time</th>
+                                                    <th style={{ backgroundColor: '#006738' }}>Time-In Date</th>
+                                                    <th style={{ backgroundColor: '#006738' }}>Time-In Time</th>
+                                                    <th style={{ backgroundColor: '#006738' }}>Time-Out Date</th>
+                                                    <th style={{ backgroundColor: '#006738' }}>Time-Out Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

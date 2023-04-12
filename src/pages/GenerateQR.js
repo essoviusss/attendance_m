@@ -90,7 +90,7 @@ export default function MyComponent() {
         </Select>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Button onClick={setData} style={{ width: '22%' }} variant='contained'>Generate QR</Button>
+        <Button onClick={setData} style={{ width: '22%', backgroundColor: '#006738' }} variant='contained'>Generate QR</Button>
       </div>
       {qr && <>
 				<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

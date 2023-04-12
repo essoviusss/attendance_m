@@ -71,11 +71,11 @@ export default function ManageQR(){
                                     <table className="table table-text-small mb-0">
                                         <thead className="thead-primary table-sorting">
                                             <tr>
-                                                <th>#</th>
-                                                <th>ID</th>
-                                                <th>Rooms</th>
-                                                <th>QR Code</th>
-                                                <th>Action</th>
+                                            <th style={{ backgroundColor: '#006738' }}>#</th>
+                                                <th style={{ backgroundColor: '#006738' }}>ID</th>
+                                                <th style={{ backgroundColor: '#006738' }}>Rooms</th>
+                                                <th style={{ backgroundColor: '#006738' }}>QR Code</th>
+                                                <th style={{ backgroundColor: '#006738' }}>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>

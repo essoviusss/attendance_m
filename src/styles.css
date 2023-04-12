@@ -1,0 +1,39 @@
+/* Set the background color for the entire page */
+body {
+  background-color: #E5FFCC;
+}
+
+/* Set the font color for all text */
+html, body, p, h1, h2, h3, h4, h5, h6 {
+  color: #333333;
+}
+
+/* Set the background color for the app bar and toolbar */
+.MuiAppBar-root, .MuiToolbar-root {
+  background-color: #006738;
+}
+
+/* Set the font color for the app bar and toolbar */
+.MuiAppBar-root, .MuiToolbar-root, .MuiTypography-root {
+  color: #FFFFFF;
+}
+
+/* Set the background color for the drawer and selected list items */
+.MuiDrawer-paper, .Mui-selected {
+  background-color: #24654B;
+}
+
+/* Set the font color for the list items */
+.MuiTypography-body1 {
+  color: #FFFFFF;
+}
+
+/* Set the background color for the list items when hovered */
+.MuiListItem-root:hover {
+  background-color: #205C40;
+}
+
+/* Set the font color for the icons */
+.MuiSvgIcon-root {
+  color: #FFFFFF;
+}

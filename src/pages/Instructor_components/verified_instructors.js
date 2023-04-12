@@ -74,12 +74,12 @@ export default function VerifiedInstructor(){
                                     <table className="table table-text-small mb-0">
                                         <thead className="thead-primary table-sorting">
                                             <tr>
-                                                <th>#</th>
-                                                <th>Instructor</th>
-                                                <th>Email</th>
-                                                <th>Department</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                            <th style={{ backgroundColor: '#006738' }}>#</th>
+                                                <th style={{ backgroundColor: '#006738' }}>Instructor</th>
+                                                <th style={{ backgroundColor: '#006738' }}>Email</th>
+                                                <th style={{ backgroundColor: '#006738' }}>Department</th>
+                                                <th style={{ backgroundColor: '#006738' }}>Status</th>
+                                                <th style={{ backgroundColor: '#006738' }}>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
