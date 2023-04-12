@@ -7,6 +7,7 @@ import axios from 'axios';
 
 export default function Instructor(){
     const [instructors, setInstructors] = useState([]);
+    
 
 
     useEffect(() => {

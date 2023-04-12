@@ -6,13 +6,15 @@ import axios from 'axios';
 
 export default function DashBoard() {
     const [instructors, setInstructors] = useState([]);
+    const [selectedInstructor, setSelectedInstructor] = useState('');
     const [attendance, setAttendance] = useState([]);
+    const [room, setRoom] = useState([]);
+    const [selectedRoom, setSelectedRoom] = useState('');
 
     useEffect(() => {
         axios.get('http://localhost/Backend_API/verified_instructors.php')
           .then(response => {
             setInstructors(response.data);
-            console.log(response.data)
           })
           .catch(error => {
             console.log(error);
@@ -23,12 +25,22 @@ export default function DashBoard() {
         axios.get('http://localhost/Backend_API/read_attendance.php')
           .then(response => {
             setAttendance(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }, []);
+
+      useEffect(() => {
+        axios.get('http://localhost/Backend_API/read_room.php')
+          .then(response => {
+            setRoom(response.data);
             console.log(response.data)
           })
           .catch(error => {
             console.log(error);
           });
-      }, [attendance]);
+      }, []);
 
       const [perPage] = useState(10);
       const [size, setSize] = useState(perPage);
@@ -43,8 +55,18 @@ export default function DashBoard() {
           }
       }
   
-      const getData = (current, pageSize) => {
-          return attendance.slice((current - 1) * pageSize, current * pageSize);
+      const getData = (current, pageSize, selectedInstructors = '') => {
+        let filteredAttendance = attendance;
+        if (selectedInstructors !== '') {
+          filteredAttendance = attendance.filter((attendance) => {
+            return attendance.Instructor_ID === selectedInstructors;
+          });
+        }
+      
+        const startIndex = (current - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        
+        return filteredAttendance.slice(startIndex, endIndex);
       };
   
       const PaginationChange = (page, pageSize) => {
@@ -61,6 +83,30 @@ export default function DashBoard() {
           }
           return originalElement;
       }
+
+      const instructorNames = [...new Set(instructors?.map(instructor => instructor.Name))];
+
+        // Create the options for the instructor filter
+        const instructorOptions = Array.isArray(instructorNames) && instructorNames?.map(name => (
+            <option key={name} value={name}>{name}</option>
+            
+        ));
+        
+        // Handle the change event of the instructor filter
+        const handleInstructorChange = event => {
+            setSelectedInstructor(event.target.value);
+        };
+
+        const roomRoom = [...new Set(room?.map(room => room.room))];
+    
+        const roomOptions = roomRoom?.map(room => (
+            <option key={room} value={room}>{room}</option>
+            
+        ));
+        const handleRoomChange = event => {
+            setSelectedRoom(event.target.value);
+        };
+
 
     return (
         <div className='body'>
@@ -92,10 +138,19 @@ export default function DashBoard() {
                                         <table className="table table-text-small mb-0" style={{ width: '100%' }}>
                                             <thead className="thead-primary table-sorting">
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>Room ID</th>
                                                     <th>Instructor ID</th>
-                                                    <th>Instructor Name</th>
+                                                    <th>
+                                                        <select value={selectedInstructor} onChange={handleInstructorChange} style={{border: "none", backgroundColor: "#1769aa", color: "white", fontWeight: "bold"}}>
+                                                            <option value="">Instructor Name</option>
+                                                            {instructorOptions}
+                                                        </select>
+                                                    </th>
+                                                    <th>
+                                                        <select value={selectedRoom} onChange={handleRoomChange} style={{border: "none", backgroundColor: "#1769aa", color: "white", fontWeight: "bold"}}>
+                                                            <option value="">Room</option>
+                                                            {roomOptions}
+                                                        </select>
+                                                    </th>
                                                     <th>Time-In Date</th>
                                                     <th>Time-In Time</th>
                                                     <th>Time-Out Date</th>
@@ -104,23 +159,25 @@ export default function DashBoard() {
                                             </thead>
                                             <tbody>
                                             {
-                                                getData(current, size).map((attendance, index) => {
-                                                    return (
-                                                        <tr key={attendance.ID}>
-                                                        <td>{attendance.ID}</td>
-                                                        <td>{attendance.Room_ID}</td>
-                                                        <td>{attendance.Instructor_ID}</td>
-                                                        <td>{attendance.Name}</td>
-                                                        <td>{attendance.TimeIn_Date}</td>
-                                                        <td>{attendance.TimeIn_Time}</td>
-                                                        <td>{attendance.TimeOut_Date}</td>
-                                                        <td>{attendance.TimeOut_Time}</td>
-                                                        
-                                                    </tr>
-                                                    )
+                                                 getData(current, size)?.map((attendance) => {
+                                                   if(selectedInstructor == '' || selectedInstructor == attendance.InstructorName){
+                                                        if(selectedRoom == '' || selectedRoom == attendance.RoomName){
+                                                            return (
+                                                                <tr key={attendance.ID}>
+                                                                <td>{attendance.Instructor_ID}</td>
+                                                                <td>{attendance.InstructorName}</td>
+                                                                <td>{attendance.RoomName}</td>
+                                                                <td>{attendance.TimeIn_Date}</td>
+                                                                <td>{attendance.TimeIn_Time}</td>
+                                                                <td>{attendance.TimeOut_Date}</td>
+                                                                <td>{attendance.TimeOut_Time}</td>
+                                                                </tr>
+                                                            );
+                                                        }
+                                                   }
                                                 })
                                             }
-                                        </tbody>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <div className="table-filter-info">
